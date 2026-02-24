@@ -14,8 +14,7 @@ from datetime import datetime, timedelta
 commands = ReplyKeyboardMarkup(keyboard=[
     [KeyboardButton(text="/show_my_muscles")],
     [KeyboardButton(text="/add_muscle"), KeyboardButton(text="/remove_muscle")],
-    [KeyboardButton(text="/history"), KeyboardButton(text="/help")],
-    [KeyboardButton(text="/settings")]
+    [KeyboardButton(text="/settings(*)")]
 ], resize_keyboard=True, one_time_keyboard=None, input_field_placeholder="Choose a command")
 
 
