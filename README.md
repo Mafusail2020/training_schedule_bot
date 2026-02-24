@@ -1,7 +1,7 @@
-### 💪 Muscle Recovery & Growth Tracker Bot
+# 💪 Muscle Recovery & Growth Tracker Bot
 An asynchronous Telegram bot designed to optimize workout routines by tracking muscle recovery windows. It helps users prevent overtraining and maximize growth by visually displaying which muscle groups are fully recovered and ready for the next session.
 
-# ✨ Features
+## ✨ Features
 * Interactive Dashboard: Users can view their current muscle recovery states directly in the chat using interactive inline keyboards.
 
 * Smart Tracking: Automatically calculates a 72-hour recovery window from the exact moment a workout is logged.
@@ -38,7 +38,7 @@ Plaintext
 ├── main.py                 # Entry point
 ├── muscles.db              # SQLite database file (generated on run)
 └── requirements.txt        # Python dependencies
-# 🚀 Quick Start Commands
+## 🚀 Quick Start Commands
 Once interacting with the bot, users have access to the following commands:
 
 /show_my_muscles – Opens the dashboard to see exactly which muscles are Ready, Recovering, or Untrained. Click a muscle to log a workout.
