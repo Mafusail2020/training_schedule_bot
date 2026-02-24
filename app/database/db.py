@@ -11,8 +11,6 @@ class Database:
     async def connect(self) -> None:
         """Call this method when starting bot to initialize the DB."""
         self.con = await aiosqlite.connect(self.db_name)
-        print(await self.debug_get_all())
-        await self.__truncate_db()
         await self.__create_table()
 
     async def __truncate_db(self) -> bool:
