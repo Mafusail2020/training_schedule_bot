@@ -8,11 +8,7 @@ I’m here to help you optimize your training by ensuring you never overtrain a 
 
 /remove_muscle – Removes muscle from tracking(YOu dont have to enter full muscle name, just click once!)
 
-/history – View your recent training sessions and consistency streaks.
-
-/settings – Customize your recovery window (default is 72h) or change your notification preferences.
-
-/help – If you get stuck or need a refresher on how the math works.
+/settings – Customize your recovery window (default is 72h) or change your notification preferences.(Work in progress)
 
 💡 How it works:
 Tap /show_my_muscles.
