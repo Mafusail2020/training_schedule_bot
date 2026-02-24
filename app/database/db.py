@@ -1,5 +1,5 @@
 from typing import List, Dict, Optional
-from datetime import datetime
+from datetime import datetime, timedelta
 import aiosqlite
 
 
@@ -11,7 +11,21 @@ class Database:
     async def connect(self) -> None:
         """Call this method when starting bot to initialize the DB."""
         self.con = await aiosqlite.connect(self.db_name)
+        print(await self.debug_get_all())
+        await self.__truncate_db()
         await self.__create_table()
+
+    async def __truncate_db(self) -> bool:
+        """WARNING: Deletes ALL data from the user_muscles table."""
+        try:
+            cursor = await self.con.execute("DELETE FROM user_muscles")
+            await cursor.close()
+            await self.con.commit()
+            print("Database truncated successfully.")
+            return True
+        except Exception as e:
+            print(f"Database error in truncate_db: {e}")
+            return False
 
     async def __create_table(self) -> None:
         cursor = await self.con.execute("""
@@ -19,6 +33,7 @@ class Database:
                 user_id INTEGER,
                 muscle TEXT,
                 last_trained TEXT,
+                UNIQUE(user_id, muscle)
             )
         """)
         await cursor.close()
@@ -31,11 +46,11 @@ class Database:
             "Shoulders", "Leg Biceps", "Back of leg", "Trapezius"
         ]
         
-        data = [(user_id, muscle) for muscle in default_muscles]
+        data = [(user_id, muscle, datetime.now()-timedelta(days=30)) for muscle in default_muscles]
         
         try:
             cursor = await self.con.executemany(
-                "INSERT OR IGNORE INTO user_muscles (user_id, muscle) VALUES (?, ?)", 
+                "INSERT OR IGNORE INTO user_muscles (user_id, muscle, last_trained) VALUES (?, ?, ?)", 
                 data
             )
             await cursor.close()
@@ -55,7 +70,7 @@ class Database:
             await cursor.close()
             await self.con.commit()
 
-            self.update_user_muscle(user_id, muscle_name)
+            await self.update_user_muscle(user_id, muscle_name)
             return True
         except Exception as e:
             print(f"Database error in add_user_muscle: {e}")
@@ -104,6 +119,40 @@ class Database:
         except Exception as e:
             print(f"Database error in update_user_muscle: {e}")
             return False
+        
+    async def remove_user_muscle(self, user_id: int, muscle_name: str) -> bool:
+        """Removes a specific tracked muscle for a user. Returns True if deleted."""
+        try:
+            cursor = await self.con.execute(
+                "DELETE FROM user_muscles WHERE user_id = ? AND muscle = ?",
+                (user_id, muscle_name)
+            )
+            # rowcount tells us how many rows were actually deleted
+            deleted = cursor.rowcount > 0
+            await cursor.close()
+            await self.con.commit()
+            return deleted
+        except Exception as e:
+            print(f"Database error in remove_user_muscle: {e}")
+            return False
+        
+    async def debug_get_all(self) -> List[tuple]:
+        """Fetches every single row in the database for debugging."""
+        try:
+            cursor = await self.con.execute("SELECT * FROM user_muscles")
+            rows = await cursor.fetchall()
+            await cursor.close()
+            
+            # Optional: Print it out nicely in the console right away
+            print(f"--- Database Dump ({len(rows)} rows) ---")
+            for row in rows:
+                print(row)
+            print("-------------------------")
+                
+            return rows
+        except Exception as e:
+            print(f"Database error in debug_get_all: {e}")
+            return []
 
 
 db = Database()

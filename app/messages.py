@@ -4,6 +4,10 @@ I’m here to help you optimize your training by ensuring you never overtrain a 
 🛠 Quick Start Commands
 /show_my_muscles – The "Dashboard." See exactly which muscles are Ready, Recovering, or Trained. Use the interactive buttons to log a workout instantly.
 
+/add_muscle – Allows you to add muscle for tracking
+
+/remove_muscle – Removes muscle from tracking(YOu dont have to enter full muscle name, just click once!)
+
 /history – View your recent training sessions and consistency streaks.
 
 /settings – Customize your recovery window (default is 72h) or change your notification preferences.
