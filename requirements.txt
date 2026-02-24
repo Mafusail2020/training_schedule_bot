@@ -2,3 +2,4 @@ sqllite
 pydantic
 dotenv
 aiogram
+aiosqlite
