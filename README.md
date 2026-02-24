@@ -22,7 +22,7 @@ Database: SQLite3 with aiosqlite for non-blocking database operations
 Architecture: Modular design with separated concerns (Handlers, Keyboards, Database, Configurations)
 
 🗂 Project Structure
-Plaintext
+```
 ├── app/
 │   ├── bot/
 │   │   ├── bot.py          # Bot instance and Dispatcher initialization
@@ -38,6 +38,7 @@ Plaintext
 ├── main.py                 # Entry point
 ├── muscles.db              # SQLite database file (generated on run)
 └── requirements.txt        # Python dependencies
+```
 ## 🚀 Quick Start Commands
 Once interacting with the bot, users have access to the following commands:
 
