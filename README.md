@@ -39,6 +39,7 @@ Architecture: Modular design with separated concerns (Handlers, Keyboards, Datab
 ├── muscles.db              # SQLite database file (generated on run)
 └── requirements.txt        # Python dependencies
 ```
+
 ## 🚀 Quick Start Commands
 Once interacting with the bot, users have access to the following commands:
 
@@ -64,12 +65,15 @@ cd training_schedule_bot
 
 Bash
 python -m venv .venv
-source .venv/bin/activate  # On Windows use: .venv\Scripts\activate
+source .venv/bin/activate  
+- On Windows use: .venv\Scripts\activate
+- 
 - Install dependencies:
 
 
 Bash
 ```pip install -r requirements.txt```
+
 Environment Variables:
 Create a .env file in the root directory and add your Telegram Bot Token (obtained from @BotFather):
 
