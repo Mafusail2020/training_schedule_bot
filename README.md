@@ -55,15 +55,18 @@ To run this bot locally, follow these steps:
 
 - Clone the repository:
 
+
 Bash
 git clone https://github.com/Mafusail2020/training_schedule_bot.git
 cd training_schedule_bot
 - Create and activate a virtual environment:
 
+
 Bash
 python -m venv .venv
 source .venv/bin/activate  # On Windows use: .venv\Scripts\activate
 - Install dependencies:
+
 
 Bash
 ```pip install -r requirements.txt```
